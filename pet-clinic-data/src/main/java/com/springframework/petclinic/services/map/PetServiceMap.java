@@ -1,19 +1,21 @@
 package com.springframework.petclinic.services.map;
 
-import com.springframework.petclinic.model.Vet;
-import com.springframework.petclinic.services.CrudService;
+import com.springframework.petclinic.model.Pet;
+import com.springframework.petclinic.services.PetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-public class PetServiceMap extends AbstractMapService<Vet, Long> implements CrudService<Vet, Long> {
+@Service
+public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
 
     @Override
-    public Set<Vet> findAll(){
+    public Set<Pet> findAll(){
         return super.findAll();
     }
 
     @Override
-    public Vet findById(Long id){
+    public Pet findById(Long id){
         return super.findById(id);
     }
 
@@ -23,12 +25,12 @@ public class PetServiceMap extends AbstractMapService<Vet, Long> implements Crud
     }
 
     @Override
-    public void delete(Vet object){
+    public void delete(Pet object){
         super.delete(object);
     }
 
     @Override
-    public Vet save(Vet object) {
+    public Pet save(Pet object) {
         return super.save(object.getId(), object);
     }
 
