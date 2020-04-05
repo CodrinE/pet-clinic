@@ -1,11 +1,9 @@
 package com.springframework.petclinic.bootstrap;
 
-import com.springframework.petclinic.model.Owner;
-import com.springframework.petclinic.model.Pet;
-import com.springframework.petclinic.model.PetType;
-import com.springframework.petclinic.model.Vet;
+import com.springframework.petclinic.model.*;
 import com.springframework.petclinic.services.OwnerService;
 import com.springframework.petclinic.services.PetTypeService;
+import com.springframework.petclinic.services.SpecialityService;
 import com.springframework.petclinic.services.VetService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -20,10 +18,19 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
+    private final SpecialityService specialityService;
 
     @Override
     public void run(String... args) throws Exception {
 
+        boolean exists = petTypeService.findAll().isEmpty();
+
+        if (exists){
+            loadData();
+        }
+    }
+
+    private void loadData() {
         PetType dog = new PetType();
         dog.setName("Dog");
         PetType saveDogPetType = petTypeService.save(dog);
@@ -66,15 +73,29 @@ public class DataLoader implements CommandLineRunner {
 
         System.out.println("Loaded owners...");
 
+        Speciality radiology = new Speciality();
+        radiology.setDescription("Radiology");
+        Speciality saveRadiology = specialityService.save(radiology);
+
+        Speciality surgery = new Speciality();
+        surgery.setDescription("Surgery");
+        Speciality saveSurgery = specialityService.save(surgery);
+
+        Speciality dentistry = new Speciality();
+        dentistry.setDescription("Dentistry");
+        Speciality saveDentistry = specialityService.save(dentistry);
+
         Vet vet1 = new Vet();
         vet1.setFirstName("Alina");
         vet1.setLastName("Patrascu");
+        vet1.getSpecialities().add(saveSurgery);
 
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
         vet2.setFirstName("George");
         vet2.setLastName("Cosbuc");
+        vet2.getSpecialities().add(saveDentistry);
 
         vetService.save(vet2);
 
