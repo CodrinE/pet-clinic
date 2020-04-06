@@ -7,7 +7,6 @@ import com.springframework.petclinic.repositories.PetTypeRepository;
 import com.springframework.petclinic.services.OwnerService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
