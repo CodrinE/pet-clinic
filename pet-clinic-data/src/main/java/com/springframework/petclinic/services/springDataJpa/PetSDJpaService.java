@@ -15,7 +15,7 @@ import java.util.Set;
 @Profile("springdatajpa")
 public class PetSDJpaService implements PetService {
 
-    PetRepository petRepository;
+    private final PetRepository petRepository;
 
     @Override
     public Set<Pet> findAll() {
