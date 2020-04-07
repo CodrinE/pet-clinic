@@ -14,7 +14,10 @@ import java.util.Set;
 @Table(name = "pets")
 public class Pet extends BaseEntity{
 
+    @Column
     private String name;
+
+    @Column
     private LocalDate birthDate;
 
     @ManyToOne

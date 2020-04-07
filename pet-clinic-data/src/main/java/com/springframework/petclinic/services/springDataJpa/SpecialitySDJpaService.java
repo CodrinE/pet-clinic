@@ -25,22 +25,22 @@ public class SpecialitySDJpaService implements SpecialityService {
     }
 
     @Override
-    public Speciality findById(Long aLong) {
-        return specialityRepository.findById(aLong).orElse(null);
+    public Speciality findById(Long id) {
+        return specialityRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Speciality save(Speciality object) {
-        return specialityRepository.save(object);
+    public Speciality save(Speciality speciality) {
+        return specialityRepository.save(speciality);
     }
 
     @Override
-    public void delete(Speciality object) {
-        specialityRepository.delete(object);
+    public void delete(Speciality speciality) {
+        specialityRepository.delete(speciality);
     }
 
     @Override
-    public void deleteById(Long aLong) {
-        specialityRepository.deleteById(aLong);
+    public void deleteById(Long id) {
+        specialityRepository.deleteById(id);
     }
 }

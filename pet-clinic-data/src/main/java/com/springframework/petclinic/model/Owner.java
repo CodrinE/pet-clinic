@@ -13,8 +13,13 @@ import java.util.Set;
 @Table(name = "owners")
 public class Owner extends Person{
 
+    @Column
     private String address;
+
+    @Column
     private String city;
+
+    @Column
     private String telephone;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")

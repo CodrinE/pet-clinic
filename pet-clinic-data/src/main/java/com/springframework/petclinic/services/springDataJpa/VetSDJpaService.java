@@ -1,9 +1,6 @@
 package com.springframework.petclinic.services.springDataJpa;
 
 import com.springframework.petclinic.model.Vet;
-import com.springframework.petclinic.repositories.OwnerRepository;
-import com.springframework.petclinic.repositories.PetRepository;
-import com.springframework.petclinic.repositories.PetTypeRepository;
 import com.springframework.petclinic.repositories.VetRepository;
 import com.springframework.petclinic.services.VetService;
 import lombok.AllArgsConstructor;
@@ -18,9 +15,6 @@ import java.util.Set;
 @Profile("springdatajpa")
 public class VetSDJpaService implements VetService {
 
-    private final OwnerRepository ownerRepository;
-    private final PetRepository petRepository;
-    private final PetTypeRepository petTypeRepository;
     private final VetRepository vetRepository;
 
     @Override
@@ -31,22 +25,22 @@ public class VetSDJpaService implements VetService {
     }
 
     @Override
-    public Vet findById(Long aLong) {
-        return vetRepository.findById(aLong).orElse(null);
+    public Vet findById(Long id) {
+        return vetRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Vet save(Vet object) {
-        return vetRepository.save(object);
+    public Vet save(Vet vet) {
+        return vetRepository.save(vet);
     }
 
     @Override
-    public void delete(Vet object) {
-        vetRepository.delete(object);
+    public void delete(Vet vet) {
+        vetRepository.delete(vet);
     }
 
     @Override
-    public void deleteById(Long aLong) {
-        vetRepository.deleteById(aLong);
+    public void deleteById(Long id) {
+        vetRepository.deleteById(id);
     }
 }

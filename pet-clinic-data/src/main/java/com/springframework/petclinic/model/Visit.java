@@ -3,10 +3,7 @@ package com.springframework.petclinic.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Getter
@@ -15,7 +12,10 @@ import java.time.LocalDate;
 @Table(name = "visits")
 public class Visit extends BaseEntity{
 
+    @Column
     private LocalDate date;
+
+    @Column
     private String description;
 
     @ManyToOne

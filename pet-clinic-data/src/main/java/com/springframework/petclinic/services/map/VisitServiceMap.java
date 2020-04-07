@@ -4,6 +4,7 @@ import com.springframework.petclinic.model.Visit;
 import com.springframework.petclinic.services.VisitService;
 import com.sun.xml.bind.v2.model.core.ID;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -13,6 +14,7 @@ import static java.util.Objects.isNull;
 
 @Service
 @AllArgsConstructor
+@Profile({"default", "map"})
 public class VisitServiceMap extends  AbstractMapService<Visit, Long>  implements VisitService {
 
     @Override
@@ -26,19 +28,19 @@ public class VisitServiceMap extends  AbstractMapService<Visit, Long>  implement
     }
 
     @Override
-    public void delete(Visit object) {
-        super.delete(object);
+    public void delete(Visit visit) {
+        super.delete(visit);
     }
 
     @Override
-    public Visit save(Visit object) {
-        if(isNull(object.getPet())
-                || isNull(object.getPet().getOwner())
-                || isNull(object.getPet().getId())
-                || isNull(object.getPet().getOwner().getId())){
+    public Visit save(Visit visit) {
+        if(isNull(visit.getPet())
+                || isNull(visit.getPet().getOwner())
+                || isNull(visit.getPet().getId())
+                || isNull(visit.getPet().getOwner().getId())){
             throw new RuntimeException("Invalid Visit");
         }
-        return super.save(object);
+        return super.save(visit);
     }
 
     @Override

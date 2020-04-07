@@ -2,11 +2,13 @@ package com.springframework.petclinic.services.map;
 
 import com.springframework.petclinic.model.PetType;
 import com.springframework.petclinic.services.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class PetTypeServiceMap extends AbstractMapService<PetType, Long> implements PetTypeService {
     @Override
     public Set<PetType> findAll() {
@@ -19,13 +21,13 @@ public class PetTypeServiceMap extends AbstractMapService<PetType, Long> impleme
     }
 
     @Override
-    public void delete(PetType object) {
-        super.delete(object);
+    public void delete(PetType petType) {
+        super.delete(petType);
     }
 
     @Override
-    public PetType save(PetType object) {
-        return super.save(object);
+    public PetType save(PetType petType) {
+        return super.save(petType);
     }
 
     @Override

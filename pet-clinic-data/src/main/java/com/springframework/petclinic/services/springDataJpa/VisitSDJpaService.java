@@ -25,22 +25,22 @@ public class VisitSDJpaService  implements VisitService {
     }
 
     @Override
-    public Visit findById(Long aLong) {
-        return visitRepository.findById(aLong).orElse(null);
+    public Visit findById(Long id) {
+        return visitRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Visit save(Visit object) {
-        return visitRepository.save(object);
+    public Visit save(Visit visit) {
+        return visitRepository.save(visit);
     }
 
     @Override
-    public void delete(Visit object) {
-        visitRepository.delete(object);
+    public void delete(Visit visit) {
+        visitRepository.delete(visit);
     }
 
     @Override
-    public void deleteById(Long aLong) {
-        visitRepository.deleteById(aLong);
+    public void deleteById(Long id) {
+        visitRepository.deleteById(id);
     }
 }
