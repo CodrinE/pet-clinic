@@ -1,10 +1,7 @@
 package com.springframework.petclinic.bootstrap;
 
 import com.springframework.petclinic.model.*;
-import com.springframework.petclinic.services.OwnerService;
-import com.springframework.petclinic.services.PetTypeService;
-import com.springframework.petclinic.services.SpecialityService;
-import com.springframework.petclinic.services.VetService;
+import com.springframework.petclinic.services.*;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -17,8 +14,10 @@ public class DataLoader implements CommandLineRunner {
 
     private final OwnerService ownerService;
     private final VetService vetService;
+    private final PetService petService;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
+    private final VisitService visitService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -53,6 +52,9 @@ public class DataLoader implements CommandLineRunner {
         mikesPet.setOwner(owner1);
         mikesPet.setBirthDate(LocalDate.now());
         mikesPet.setName("Job");
+
+        petService.save(mikesPet);
+
         owner1.getPets().add(mikesPet);
 
         Owner owner2 = new Owner();
@@ -69,7 +71,18 @@ public class DataLoader implements CommandLineRunner {
         martasPet.setOwner(owner2);
         martasPet.setBirthDate(LocalDate.now());
         martasPet.setName("Fluffy");
+
+        petService.save(martasPet);
+
         owner2.getPets().add(martasPet);
+
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(martasPet);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Sneezy Kitty");
+
+        visitService.save(catVisit);
 
         System.out.println("Loaded owners...");
 
