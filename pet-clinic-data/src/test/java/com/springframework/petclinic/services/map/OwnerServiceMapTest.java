@@ -18,11 +18,8 @@ class OwnerServiceMapTest {
 
     @BeforeEach
     void setUp() {
-
-        Owner owner = new Owner();
-        owner.setId(owner1Id);
         ownerServiceMap = new OwnerServiceMap(new PetTypeServiceMap(), new PetServiceMap());
-        ownerServiceMap.save(owner);
+        ownerServiceMap.save(Owner.builder().id(owner1Id).lastName(lastName).build());
     }
 
     @Test
@@ -51,16 +48,14 @@ class OwnerServiceMapTest {
 
     @Test
     void saveExistingId() {
-        Owner owner2 = new Owner();
-        owner2.setId(owner2Id);
-        Owner saveOwner = ownerServiceMap.save(owner2);
+        Owner saveOwner = ownerServiceMap.save(Owner.builder().id(owner2Id).lastName(lastName).build());
 
         assertEquals(owner2Id, saveOwner.getId());
     }
 
     @Test
     void saveNoId() {
-        Owner saveOwner =  ownerServiceMap.save(new Owner());
+        Owner saveOwner =  ownerServiceMap.save(Owner.builder().build());
 
         assertNotNull(saveOwner);
         assertNotNull(saveOwner.getId());
@@ -68,10 +63,7 @@ class OwnerServiceMapTest {
 
     @Test
     void findByLastName() {
-        Owner owner = new Owner();
-        owner.setId(owner2Id);
-        owner.setLastName(lastName);
-        Owner saveOwner = ownerServiceMap.save(owner);
+        Owner saveOwner = ownerServiceMap.save(Owner.builder().id(owner2Id).lastName(lastName).build());
 
         assertNotNull(lastName);
         assertEquals(owner2Id, saveOwner.getId());

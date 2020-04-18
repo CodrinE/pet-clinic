@@ -2,14 +2,12 @@ package com.springframework.petclinic.bootstrap;
 
 import com.springframework.petclinic.model.*;
 import com.springframework.petclinic.services.*;
-import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
 @Component
-@AllArgsConstructor
 public class DataLoader implements CommandLineRunner {
 
     private final OwnerService ownerService;
@@ -18,6 +16,16 @@ public class DataLoader implements CommandLineRunner {
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
     private final VisitService visitService;
+
+    public DataLoader(OwnerService ownerService, VetService vetService, PetService petService, PetTypeService petTypeService,
+                      SpecialityService specialityService, VisitService visitService) {
+        this.ownerService = ownerService;
+        this.vetService = vetService;
+        this.petService = petService;
+        this.petTypeService = petTypeService;
+        this.specialityService = specialityService;
+        this.visitService = visitService;
+    }
 
     @Override
     public void run(String... args) throws Exception {
@@ -38,39 +46,42 @@ public class DataLoader implements CommandLineRunner {
         cat.setName("Cat");
         PetType saveCatPetType = petTypeService.save(cat);
 
-        Owner owner1 = new Owner();
-        owner1.setFirstName("Mike");
-        owner1.setLastName("Wilson");
-        owner1.setAddress("124 New Road");
-        owner1.setCity("Miami");
-        owner1.setTelephone("98643782673");
+        Owner owner1 = Owner.builder()
+                .firstName("Mike")
+                .lastName("Wilson")
+                .address("124 New Road")
+                .city("Miami")
+                .telephone("98643782673")
+                .build();
 
         ownerService.save(owner1);
 
-        Pet mikesPet = new Pet();
-        mikesPet.setPetType(saveDogPetType);
-        mikesPet.setOwner(owner1);
-        mikesPet.setBirthDate(LocalDate.now());
-        mikesPet.setName("Job");
+        Pet mikesPet = Pet.builder()
+                .petType(saveDogPetType)
+                .owner(owner1)
+                .birthDate(LocalDate.now())
+                .name("Job").build();
 
         petService.save(mikesPet);
 
         owner1.getPets().add(mikesPet);
 
-        Owner owner2 = new Owner();
-        owner2.setFirstName("Marta");
-        owner2.setLastName("Jonson");
-        owner2.setAddress("124 New Road");
-        owner2.setCity("Miami");
-        owner2.setTelephone("98643782673");
+        Owner owner2 = Owner.builder()
+                .firstName("Marta")
+                .lastName("Jonson")
+                .address("124 New Road")
+                .city("Miami")
+                .telephone("98643782673")
+                .build();
 
         ownerService.save(owner2);
 
-        Pet martasPet = new Pet();
-        martasPet.setPetType(saveCatPetType);
-        martasPet.setOwner(owner2);
-        martasPet.setBirthDate(LocalDate.now());
-        martasPet.setName("Fluffy");
+        Pet martasPet = Pet.builder()
+                .petType(saveCatPetType)
+                .owner(owner2)
+                .birthDate(LocalDate.now())
+                .name("Fluffy")
+                .build();
 
         petService.save(martasPet);
 

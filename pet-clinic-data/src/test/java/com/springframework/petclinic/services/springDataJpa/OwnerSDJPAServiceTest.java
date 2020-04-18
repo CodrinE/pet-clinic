@@ -48,13 +48,8 @@ class OwnerSDJPAServiceTest {
 
     @BeforeEach
     void setUp() {
-        testOwner1 = new Owner();
-        testOwner1.setId(ID_1);
-        testOwner1.setLastName(LAST_NAME_1);
-        testOwner2 = new Owner();
-        testOwner2.setId(ID_2);
-        testOwner2.setLastName(LAST_NAME_2);
-
+        testOwner1 = Owner.builder().id(ID_1).lastName(LAST_NAME_1).build();
+        testOwner2 = Owner.builder().id(ID_2).lastName(LAST_NAME_2).build();
     }
 
     @Test

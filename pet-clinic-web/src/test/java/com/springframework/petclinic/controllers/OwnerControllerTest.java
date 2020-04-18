@@ -41,11 +41,9 @@ class OwnerControllerTest {
 
     @BeforeEach
     void setUp() {
-        owner1 = new Owner();
-        owner1.setId(1L);
+        owner1 = Owner.builder().id(1L).build();
 
-        owner2 = new Owner();
-        owner2.setId(2L);
+        owner2 = Owner.builder().id(2L).build();
 
         owners = new HashSet<>();
         owners.add(owner1);
