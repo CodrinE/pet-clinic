@@ -26,7 +26,7 @@ public class Owner extends Person{
     private String telephone;
 
     @Column
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
 
     @Builder
