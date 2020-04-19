@@ -2,8 +2,10 @@
   th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
 
 <body>
+<!--/*@thymesVar id="visit" type="com.springframework.petclinic.model.Visit"*/-->
+<!--/*@thymesVar id="pet" type="com.springframework.petclinic.model.Pet"*/-->
 
-  <h2>
+<h2>
     <th:block th:if="${visit['new']}">New </th:block>
     Visit
   </h2>
@@ -22,7 +24,7 @@
       <td th:text="${pet.name}" /></td>
       <td
         th:text="${#temporals.format(pet.birthDate, 'yyyy-MM-dd')}" /></td>
-      <td th:text="${pet.type}" /></td>
+      <td th:text="${pet.petType}" /></td>
       <td
         th:text="${pet.owner?.firstName + ' ' + pet.owner?.lastName}" /></td>
     </tr>
